@@ -1,0 +1,38 @@
+@startuml Skyjo
+skinparam style strictuml
+skinparam classAttributeIconSize 0
+skinparam classFontStyle Bold
+hide empty members
+
+class Skyjo{
+    main(args : String[*])
+}
+
+class Carte{
+    valeur : Integer
+    Carte(valeur : Integer)
+    getValeur() : Integer
+    setValeur()
+
+}
+
+class Joueur{
+    nom : String
+    Joueur()
+    Joueur(nom : String)
+    getNom() : String
+    setNom()
+    piocher() : Carte
+}
+
+class GrilleJoueur{
+    grille : Carte[*]
+    getColonne() : Carte[*]
+    retirerColonne()
+}
+class Partie{
+    nbJoueurs : Integer
+    
+}
+
+@enduml
