@@ -9,30 +9,44 @@ class Skyjo{
 }
 
 class Carte{
-    valeur : Integer
-    Carte(valeur : Integer)
-    getValeur() : Integer
-    setValeur()
+    - valeur : Integer
+    + Carte(valeur : Integer)
+    + getValeur() : Integer
+    + setValeur(valeur : Integer)
 
 }
 
 class Joueur{
-    nom : String
-    Joueur()
-    Joueur(nom : String)
-    getNom() : String
-    setNom()
-    piocher() : Carte
+    - nom : String
+    + Joueur()
+    + Joueur(nom : String)
+    + getNom() : String
+    + setNom(nom : String)
+    + piocher() : Carte
 }
 
 class GrilleJoueur{
-    grille : Carte[*]
-    getColonne() : Carte[*]
-    retirerColonne()
+    - sommePoints : Integer
+    + getColonne() : Carte[*]
+    + retirerColonne()
+    + addObserver(obs : GrilleObserver)
+    + notifyObservers()
 }
+
+Joueur "1\n - grille" o--> GrilleJoueur
+
+interface GrilleObserver{
+    + Update()
+}
+GrilleJoueur "*\n- observers" o-u-> GrilleObserver
 class Partie{
-    nbJoueurs : Integer
-    
+    - nbJoueurs : Integer
+    + distribuer()
+    + getNbJoueurs()
 }
+
+Partie "*\n- pioche" o--> Carte
+Partie "*\n- defausse" o--> Carte
+GrilleJoueur "*\n - grille" o-r-> Carte
 
 @enduml
