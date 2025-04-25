@@ -7,46 +7,55 @@ hide empty members
 class Skyjo{
     main(args : String[*])
 }
+package model{
+    class Carte{
+        - valeur : Integer
+        - facecachee : Boolean
+        + <<creates>> Carte(valeur : Integer)
+        + getValeur() : Integer
+        + setValeur(valeur : Integer)
+        + retourner()
+    }
 
-class Carte{
-    - valeur : Integer
-    + Carte(valeur : Integer)
-    + getValeur() : Integer
-    + setValeur(valeur : Integer)
+    class Joueur{
+        - nom : String
+        + Joueur()
+        + Joueur(nom : String)
+        + getNom() : String
+        + getGrille() : GrilleJoueur
+        + setNom(nom : String)
+        + piocher() : Carte
+    }
 
+    class GrilleJoueur{
+        - sommePoints : Integer
+        +<<creates>>GrilleJoueur()
+        + getColonne() : Carte[*]
+        + remplacerCarte()
+        + retirerColonne()
+        + addObserver(obs : GrilleObserver)
+        + notifyObservers()
+    }
+
+    Joueur "1\n - grille" o--> GrilleJoueur : possède >
+
+    interface GrilleObserver{
+        + Update()
+    }
+    GrilleJoueur "*\n- observers" o-u-> GrilleObserver
+
+    class Partie{
+        - __nbJoueurs : Integer
+        + <<creates>> Partie(nbJoueurs : Integer)
+        + getNbJoueurs() : Integer
+        + remplirPioche()
+        + distribuer()
+        +demarrer()
+    }
+
+    Partie "*\n- pioche" o--> Carte
+    Partie "*\n- defausse" o--> Carte
+    Partie "*\n- joueurs" o-u-> Joueur : fait s'affronter >
+    GrilleJoueur "*\n - grille" o--> Carte : contient >
 }
-
-class Joueur{
-    - nom : String
-    + Joueur()
-    + Joueur(nom : String)
-    + getNom() : String
-    + setNom(nom : String)
-    + piocher() : Carte
-}
-
-class GrilleJoueur{
-    - sommePoints : Integer
-    + getColonne() : Carte[*]
-    + retirerColonne()
-    + addObserver(obs : GrilleObserver)
-    + notifyObservers()
-}
-
-Joueur "1\n - grille" o--> GrilleJoueur
-
-interface GrilleObserver{
-    + Update()
-}
-GrilleJoueur "*\n- observers" o-u-> GrilleObserver
-class Partie{
-    - nbJoueurs : Integer
-    + distribuer()
-    + getNbJoueurs()
-}
-
-Partie "*\n- pioche" o--> Carte
-Partie "*\n- defausse" o--> Carte
-GrilleJoueur "*\n - grille" o-r-> Carte
-
 @enduml
