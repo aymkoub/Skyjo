@@ -1,32 +1,36 @@
 import java.util.Stack;
 
 public class Joueur {
+    // Attributs de la classe Joueur
     private String nom;
     private GrilleJoueur grille;
 
-    public Joueur(){
+    // Constructeurs de la classe Joueur
+    public Joueur() {
         this.nom = "joueur";
         grille = new GrilleJoueur();
     }
 
-    public Joueur(String nom){
+    public Joueur(String nom) {
         this.nom = nom;
         grille = new GrilleJoueur();
     }
 
-    public String getNom(){
+    // Getters de la classe Joueur
+    public String getNom() {
         return this.nom;
     }
 
-    public GrilleJoueur getGrille(){
+    public GrilleJoueur getGrille() {
         return this.grille;
     }
 
-    public void setNom(String nom){
+    // Setter de la classe Joueur
+    public void setNom(String nom) {
         this.nom = nom;
     }
 
-    public Carte piocher(Stack<Carte> pioche){
+    public Carte piocher(Stack<Carte> pioche) {
         Carte cartePiochee = pioche.pop();
         return cartePiochee;
     }
