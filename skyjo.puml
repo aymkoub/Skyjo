@@ -14,7 +14,7 @@ package model{
         + <<creates>> Carte(valeur : Integer)
         + getValeur() : Integer
         + setValeur(valeur : Integer)
-        + retourner()
+        + changerVisibilite()
     }
 
     class Joueur{
@@ -31,8 +31,13 @@ package model{
         - sommePoints : Integer
         +<<creates>>GrilleJoueur()
         + getColonne() : Carte[*]
-        + remplacerCarte()
+        + getSomme() : Integer
+        + setSomme(somme : Integer)
+        + remplacerCarte(nouvelleCarte : Carte, colonne : Integer, ligne : Integer)
+        + retournerCarte(carte : Carte, colonne : Integer, ligne : Integer)
         + retirerColonne()
+        + calculSomme()
+        + estComplete() : Boolean
         + addObserver(obs : GrilleObserver)
         + notifyObservers()
     }
@@ -50,7 +55,7 @@ package model{
         + getNbJoueurs() : Integer
         + remplirPioche()
         + distribuer()
-        +demarrer()
+        + demarrer()
     }
 
     Partie "*\n- pioche" o--> Carte

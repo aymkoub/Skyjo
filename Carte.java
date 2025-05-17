@@ -11,7 +11,15 @@ public class Carte {
 
     // Getter de la classe Carte
     public int getValeur() {
-        return this.__valeur;
+        if (this.estVisible()) {
+            return this.__valeur;
+        } else {
+            return 13; // Valeur inexistante dans le jeu
+        }
+    }
+
+    public boolean estVisible() {
+        return this.__faceCachee;
     }
 
     // Setter de la classe Carte
@@ -21,7 +29,7 @@ public class Carte {
 
     // Méthode pour retourner une carte, quand elle est révélée dans la grille ou
     // envoyée dans la défausse
-    public void retoruner() {
+    public void changerVisibilite() {
         this.__faceCachee = !this.__faceCachee;
     }
 }
